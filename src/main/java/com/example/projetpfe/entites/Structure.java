@@ -1,30 +1,47 @@
 package com.example.projetpfe.entites;
 
 
+import javax.persistence.*;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 @Entity
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class Structure {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String nomStructure;
+    private Long idStructure;
+    private String nomStructure;
 
     @OneToMany
-    List<User>users;
+    private List<User>users;
+
+    public Structure() {
+    }
+
+    public Structure(String nomStructure) {
+        this.nomStructure = nomStructure;
+    }
+
+    public Long getIdStructure() {
+        return idStructure;
+    }
+
+    public void setIdStructure(Long idStructure) {
+        this.idStructure = idStructure;
+    }
+
+    public String getNomStructure() {
+        return nomStructure;
+    }
+
+    public void setNomStructure(String nomStructure) {
+        this.nomStructure = nomStructure;
+    }
+
+    @Override
+    public String toString() {
+        return "Structure{" +
+                "idStructure=" + idStructure +
+                ", nomStructure='" + nomStructure + '\'' +
+                '}';
+    }
 }
