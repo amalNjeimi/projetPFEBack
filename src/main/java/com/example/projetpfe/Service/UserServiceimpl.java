@@ -1,5 +1,6 @@
 package com.example.projetpfe.Service;
 
+import com.example.projetpfe.Repository.ProjetReposiory;
 import com.example.projetpfe.Repository.UserRepository;
 import com.example.projetpfe.entites.Projet;
 import com.example.projetpfe.entites.User;
@@ -12,6 +13,8 @@ import java.util.List;
 public class UserServiceimpl implements UserService{
     @Autowired
     UserRepository userREp;
+    @Autowired
+    ProjetReposiory projetReposiory;
 
     @Override
     public User SaveUser(User u) {
@@ -47,6 +50,7 @@ userREp.deleteById(id);
 
     @Override
     public List<Projet> findProjectsByUser(Long id) {
-        return userREp.findProjectsByUser(id);
+    	User user = userREp.findById(id).get();
+        return projetReposiory.findByUser(user);
     }
 }
